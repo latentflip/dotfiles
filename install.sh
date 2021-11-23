@@ -1,4 +1,9 @@
 #!/usr/bin/env bash
 
-cp ./bin/git-recent /usr/bin
-chmod +x /usr/bin/git-recent
+mkdir $HOME/bin
+ln -s $(pwd)/git-recent $HOME/bin
+
+ln -s $(pwd)/.aliases.bashrc $HOME/.aliases.bashrc
+ln -s $(pwd)/gitconfig $HOME/.gitconfig
+
+echo source $HOME/.aliases.bashrc >> $HOME/.bashrc
