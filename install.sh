@@ -7,3 +7,5 @@ ln -s $(pwd)/gitconfig $HOME/.gitconfig
 
 echo "source $HOME/.aliases.bashrc" >> $HOME/.bashrc
 echo "PATH=\$PATH:$HOME/bin" >> $HOME/.bashrc
+
+git clone https://latentflip:${GH_DOTFILES_PAT}:@github.com/latentflip/github-dotfiles $HOME/github-dotfiles
