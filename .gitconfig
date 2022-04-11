@@ -3,7 +3,10 @@
 	email = latentflip@github.com
 
 [push]
-	default = simple
+	default = current
 	
 [pull]
 	rebase = false
+
+[remote]
+	pushDefault origin
