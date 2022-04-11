@@ -9,4 +9,4 @@
 	rebase = false
 
 [remote]
-	pushDefault origin
+	pushDefault = origin
