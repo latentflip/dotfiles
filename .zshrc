@@ -44,6 +44,8 @@ eval "$(fnm env --use-on-cd)"
 alias cat=bat
 alias gs='git status'
 alias gc='git commit'
+alias gp='git push'
+alias ga='git add'
 
 ####
 # Project completion
