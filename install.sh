@@ -1,11 +1,13 @@
 #!/usr/bin/env bash
 
-ln -s $(pwd)/bin $HOME/bin
+if [[ ! -L "$HOME/bin" ]]; then
+  ln -s $(pwd)/bin $HOME/bin
+fi
+if [[ ! -L "$HOME/.gitconfig" ]]; then
+  ln -s $(pwd)/gitconfig $HOME/.gitconfig
+fi
 
-ln -s $(pwd)/.aliases.bashrc $HOME/.aliases.bashrc
-ln -s $(pwd)/gitconfig $HOME/.gitconfig
-
-echo "source $HOME/.aliases.bashrc" >> $HOME/.bashrc
-echo "PATH=\$PATH:$HOME/bin" >> $HOME/.bashrc
-
-git clone https://latentflip:${GH_DOTFILES_PAT}@github.com/latentflip/github-dotfiles $HOME/github-dotfiles
+echo "" >> $HOME/.zshrc
+echo "####" >> $HOME/.zshrc
+echo "# Installed by $(pwd)" >> $HOME/.zshrc
+echo "PATH=\$PATH:$HOME/bin" >> $HOME/.zshrc
