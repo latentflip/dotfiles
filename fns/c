@@ -1,0 +1,45 @@
+#!/bin/zsh
+#
+# This lets you quickly jump into a project directory.
+#
+# Type:
+#
+#   c <tab>
+#
+# ...to autocomplete on all of your projects in the directories specified in
+# `functions/_c`. Typically I'm using it like:
+#
+#    c latentflip<tab>/bo<tab>
+#
+# ...to quickly jump into holman/boom, for example.
+#
+# If what you type doesn't exist, will clone it from github for you if <username>/<repo> is valid
+
+echo "$1/" | cut -d '/' -f1 | read user
+echo "$1/" | cut -d '/' -f2 | read repo
+echo "$1/" | cut -d '/' -f3- | read to_cd_into
+
+# cd into existing user
+if [ -z "$repo" ]; then
+    if [ -d ~/Code/$user ]; then
+        cd ~/Code/$user
+    else
+        echo "No such dir ~/Code/$user"
+    fi
+# cd into existing user/repo
+elif [ -d ~/Code/$user/$repo ]; then
+    cd ~/Code/$user/$repo/$to_cd_into
+else
+    echo "cloning git@github.com:$user/$repo..."
+    git ls-remote "git@github.com:$user/$repo"
+    if [ "$?" -ne 0 ]; then
+    echo "git@github.com:$user/$repo is not a valid git repo"
+    else
+        mkdir -p ~/Code/$user
+        cd ~/Code/$user
+        git clone git@github.com:$user/$repo
+        cd $repo
+    fi
+fi
+
+
